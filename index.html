@@ -14,9 +14,10 @@
     background: #1a0a2e;
     color: #fff;
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
 
@@ -47,10 +48,11 @@
     width: 100%;
     min-height: 100vh;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     text-align: center;
-    padding: 24px;
+    padding: 32px 20px 48px;
+    overflow-y: auto;
   }
   .screen.active { display: flex; }
 
@@ -158,7 +160,7 @@
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,110,180,0.25);
     border-radius: 24px;
-    padding: 36px 32px;
+    padding: 28px 20px;
     max-width: 600px;
     width: 100%;
     backdrop-filter: blur(10px);
@@ -187,7 +189,7 @@
   .feedback-text { margin-top: 18px; font-size: 0.95rem; min-height: 26px; color: #ffccee; font-style: italic; }
 
   /* MEMORY */
-  .memory-intro { max-width: 560px; }
+  .memory-intro { max-width: 560px; width: 100%; }
   .memory-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -219,22 +221,23 @@
     cursor: crosshair;
     touch-action: none;
     max-width: 100%;
+    display: block;
   }
   .catch-score { font-size: 1.2rem; color: #ff6eb4; margin-bottom: 12px; font-weight: 600; }
   .catch-timer { font-size: 0.9rem; color: #c9a0dc; margin-bottom: 8px; }
 
   /* LOVE LETTERS */
-  .letters-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; max-width: 640px; margin-bottom: 28px; }
+  .letters-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 640px; width: 100%; margin-bottom: 16px; }
   .letter-env {
     background: rgba(255,255,255,0.07);
     border: 1.5px solid rgba(255,180,80,0.35);
     border-radius: 18px;
-    padding: 20px 18px;
+    padding: 14px 12px;
     cursor: pointer;
     transition: all 0.3s;
-    width: 130px;
+    width: 90px;
     text-align: center;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     user-select: none;
   }
   .letter-env:hover { transform: translateY(-6px) rotate(3deg); box-shadow: 0 12px 30px rgba(255,180,80,0.3); border-color: #f5a623; }
@@ -245,9 +248,9 @@
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,180,80,0.25);
     border-radius: 20px;
-    padding: 28px 30px;
+    padding: 20px 18px;
     max-width: 560px; width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     animation: fadeIn 0.5s ease;
   }
   .letter-content.visible { display: block; }
@@ -256,8 +259,8 @@
   .letter-content p { font-size: 0.92rem; color: #ffe0c0; line-height: 1.8; font-weight: 300; }
 
   /* CANDLES */
-  .cake-emoji { font-size: clamp(90px, 18vw, 130px); display: block; }
-  .candles-row { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-bottom: 24px; max-width: 500px; }
+  .cake-emoji { font-size: clamp(60px, 14vw, 100px); display: block; }
+  .candles-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; max-width: 100%; padding: 0 8px; }
   .candle { display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: transform 0.2s; }
   .candle:hover { transform: scale(1.12); }
   .candle .flame { font-size: 2rem; animation: flicker 0.8s ease-in-out infinite alternate; transition: opacity 0.3s; line-height: 1; }
@@ -273,11 +276,9 @@
     background: rgba(255,255,255,0.07);
     border: 1.5px solid rgba(255,110,180,0.3);
     border-radius: 28px;
-    padding: 44px 36px;
+    padding: 32px 24px;
     max-width: 580px; width: 100%;
     backdrop-filter: blur(12px);
-    animation: floatCard 3s ease-in-out infinite;
-    overflow-y: auto; max-height: 90vh;
   }
   @keyframes floatCard { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   .final-title { font-family: 'Dancing Script', cursive; font-size: clamp(2.4rem, 8vw, 4.5rem); color: #ff6eb4; text-shadow: 0 0 40px #ff6eb4; margin-bottom: 8px; animation: glowPulse 1.8s ease-in-out infinite; }
@@ -365,7 +366,7 @@
     <p class="final-msg">
       Ti si najjača žena koju poznajem.<br>
       Boriš se svaki dan — za naše dječake, za našu porodicu, za <em>nas</em>.<br><br>
-      Istrazujes svaki dan, pokušavaš sve što je moguće,<br>
+      Trčiš od doktora do doktora, pokušavaš sve što je moguće,<br>
       jer predati se jednostavno nije dio tvojeg rječnika.<br><br>
       Tjeraš me da rastem. Čuvaš našu ljubav živom.<br>
       Odgajaš dvojicu dječaka koji će jednog dana biti dobri, brižni muškarci —<br>
@@ -414,10 +415,10 @@ function goTo(n) {
 /* ── KVIZ ── */
 const questions = [
   {
-q: 'Koliko puta dnevno čuješ "MAMA!" prije nego što popiješ prvu kafu?',
-answers: ['Jednom, djeca su strpljiva 😇', 'Već na putu do kuhinje izgubila sam broj', 'Dovoljno puta da zaboravim svoje ime', 'Kafu? Koja kafa? Odavno je hladna.'],
-correct: 3,
-feedback: 'Hladna kafa je znak dobre mame. I ti je piješ bez prigovora! ☕😂'
+    q: 'Svako jutro spremaš dječacima doručak. Šta se desi ako im daš nešto što nije zdravo?',
+    answers: ['Veselo jedu i hvale te 😇', 'Odmah pitaju: "Je li ovo zdravo, mama?"', 'Bacaju hranu po zidu 🎨', 'Kažu da je fino i traže još'],
+    correct: 1,
+    feedback: 'Naravno! Jer si ih naučila da cijene zdravu hranu. Odlična mama! 🥦👑'
   },
   {
     q: 'Dječaci se opet potukli i razbili nešto u kući. Šta radiš?',
