@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Za Moju Predivnu Ženu ❤️</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a0a2e;
+    color: #fff;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #particles {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.7; }
+    100% { transform: translateY(-150px) rotate(720deg); opacity: 0; }
+  }
+
+  .screen {
+    display: none;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+  }
+  .screen.active { display: flex; }
+
+  .title-main {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.2rem, 7vw, 4.2rem);
+    color: #ff6eb4;
+    text-shadow: 0 0 30px #ff6eb4aa;
+    margin-bottom: 12px;
+    animation: glowPulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%,100% { text-shadow: 0 0 20px #ff6eb4aa; }
+    50%      { text-shadow: 0 0 55px #ff6eb4, 0 0 90px #ff6eb4aa; }
+  }
+
+  .subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+    color: #c9a0dc;
+    margin-bottom: 36px;
+    font-weight: 300;
+    max-width: 500px;
+  }
+
+  .card-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+    color: #ff6eb4;
+    margin-bottom: 14px;
+  }
+
+  .card-text {
+    font-size: clamp(0.88rem, 2.2vw, 1.05rem);
+    color: #e0c8f0;
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto 24px;
+    font-weight: 300;
+  }
+
+  .heart-big {
+    font-size: 86px;
+    animation: heartbeat 1.3s ease-in-out infinite;
+    margin-bottom: 28px;
+    display: block;
+    user-select: none;
+  }
+
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    14%     { transform: scale(1.22); }
+    28%     { transform: scale(1); }
+    42%     { transform: scale(1.16); }
+    70%     { transform: scale(1); }
+  }
+
+  .btn {
+    background: linear-gradient(135deg, #ff6eb4, #ff4081);
+    color: #fff;
+    border: none;
+    padding: 14px 38px;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 5px 28px #ff408166;
+    transition: all 0.28s ease;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 8px;
+  }
+  .btn:hover  { transform: translateY(-3px) scale(1.06); box-shadow: 0 10px 38px #ff408188; }
+  .btn:active { transform: scale(0.97); }
+
+  .btn-purple { background: linear-gradient(135deg, #7b40ff, #b040ff); box-shadow: 0 5px 28px #7b40ff66; }
+  .btn-purple:hover { box-shadow: 0 10px 38px #7b40ff88; }
+  .btn-gold { background: linear-gradient(135deg, #f5a623, #f76b1c); box-shadow: 0 5px 28px #f5a62366; }
+  .btn-gold:hover { box-shadow: 0 10px 38px #f5a62388; }
+  .btn-green { background: linear-gradient(135deg, #20c97a, #1aaa60); box-shadow: 0 5px 28px #20c97a66; }
+
+  .progress-wrap {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 5px;
+    background: rgba(255,255,255,0.1);
+    z-index: 100;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6eb4, #7b40ff);
+    transition: width 0.6s ease;
+  }
+
+  /* SCREENS BG */
+  #screen1 { background: radial-gradient(ellipse at center, #2d0b4e 0%, #1a0a2e 70%); }
+  #screen2 { background: radial-gradient(ellipse at center, #0b2d4e 0%, #0a1a2e 70%); }
+  #screen3 { background: radial-gradient(ellipse at center, #1a2d0b 0%, #0f1a08 70%); }
+  #screen4 { background: radial-gradient(ellipse at center, #2d2000 0%, #1a1200 70%); }
+  #screen5 { background: radial-gradient(ellipse at center, #4e2000 0%, #2e0f00 70%); }
+  #screen6 { background: radial-gradient(ellipse at center, #2e0a0a 0%, #1a0505 70%); }
+  #screen7 { background: radial-gradient(ellipse at center, #2d1a4e 0%, #1a0a2e 70%); }
+
+  /* QUIZ */
+  .quiz-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,110,180,0.25);
+    border-radius: 24px;
+    padding: 36px 32px;
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+  }
+  .question-counter { font-size: 0.8rem; color: #9a7fb8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .question-text { font-size: clamp(1rem, 3vw, 1.25rem); color: #fff; margin-bottom: 28px; line-height: 1.6; font-weight: 400; }
+  .answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:480px) { .answers-grid { grid-template-columns: 1fr; } }
+  .ans-btn {
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(255,110,180,0.3);
+    border-radius: 14px;
+    color: #e0c8f0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.93rem;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .ans-btn:hover  { background: rgba(255,110,180,0.18); border-color: #ff6eb4; color:#fff; transform: translateY(-2px); }
+  .ans-btn.correct { background: rgba(80,220,120,0.25); border-color: #50dc78; color: #a0ffb8; pointer-events: none; }
+  .ans-btn.wrong   { background: rgba(255,80,80,0.22);  border-color: #ff5050; color: #ffaaaa; pointer-events: none; }
+  .ans-btn:disabled { opacity: 0.5; cursor: default; }
+  .feedback-text { margin-top: 18px; font-size: 0.95rem; min-height: 26px; color: #ffccee; font-style: italic; }
+
+  /* MEMORY */
+  .memory-intro { max-width: 560px; }
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto 24px;
+  }
+  @media(max-width:400px) { .memory-grid { grid-template-columns: repeat(3, 1fr); max-width: 320px; } }
+  .mem-card { aspect-ratio: 1; border-radius: 14px; cursor: pointer; perspective: 600px; position: relative; }
+  .mem-inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s ease; position: relative; border-radius: 14px; }
+  .mem-card.flipped .mem-inner { transform: rotateY(180deg); }
+  .mem-card.matched .mem-inner { transform: rotateY(180deg); }
+  .mem-card.matched .mem-front { box-shadow: 0 0 18px 4px #ff6eb4aa; }
+  .mem-back, .mem-front {
+    position: absolute; width: 100%; height: 100%;
+    border-radius: 14px; backface-visibility: hidden;
+    display: flex; align-items: center; justify-content: center; font-size: 1.9rem;
+  }
+  .mem-back { background: linear-gradient(135deg, #3d1266, #6b2499); border: 1.5px solid rgba(255,110,180,0.35); font-size: 1.4rem; color: rgba(255,255,255,0.4); }
+  .mem-front { background: linear-gradient(135deg, #2a0a3e, #4a1a6e); border: 1.5px solid #ff6eb488; transform: rotateY(180deg); }
+  .mem-status { font-size: 0.9rem; color: #c9a0dc; margin-bottom: 12px; }
+
+  /* CATCH GAME (screen 4) */
+  #catchCanvas {
+    border: 2px solid rgba(255,110,180,0.4);
+    border-radius: 20px;
+    background: rgba(0,0,0,0.3);
+    cursor: crosshair;
+    touch-action: none;
+    max-width: 100%;
+  }
+  .catch-score { font-size: 1.2rem; color: #ff6eb4; margin-bottom: 12px; font-weight: 600; }
+  .catch-timer { font-size: 0.9rem; color: #c9a0dc; margin-bottom: 8px; }
+
+  /* LOVE LETTERS */
+  .letters-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; max-width: 640px; margin-bottom: 28px; }
+  .letter-env {
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(255,180,80,0.35);
+    border-radius: 18px;
+    padding: 20px 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 130px;
+    text-align: center;
+    font-size: 2.2rem;
+    user-select: none;
+  }
+  .letter-env:hover { transform: translateY(-6px) rotate(3deg); box-shadow: 0 12px 30px rgba(255,180,80,0.3); border-color: #f5a623; }
+  .letter-env.opened { background: rgba(245,166,35,0.15); border-color: #f5a623; transform: scale(1.05); cursor: default; }
+  .letter-env .env-label { font-size: 0.7rem; color: #c9a0a0; margin-top: 8px; font-family: 'Poppins'; }
+  .letter-content {
+    display: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,180,80,0.25);
+    border-radius: 20px;
+    padding: 28px 30px;
+    max-width: 560px; width: 100%;
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease;
+  }
+  .letter-content.visible { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+  .letter-content h3 { font-family: 'Dancing Script', cursive; color: #f5a623; font-size: 1.5rem; margin-bottom: 10px; }
+  .letter-content p { font-size: 0.92rem; color: #ffe0c0; line-height: 1.8; font-weight: 300; }
+
+  /* CANDLES */
+  .cake-emoji { font-size: clamp(90px, 18vw, 130px); display: block; }
+  .candles-row { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin-bottom: 24px; max-width: 500px; }
+  .candle { display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: transform 0.2s; }
+  .candle:hover { transform: scale(1.12); }
+  .candle .flame { font-size: 2rem; animation: flicker 0.8s ease-in-out infinite alternate; transition: opacity 0.3s; line-height: 1; }
+  .candle.blown .flame { opacity: 0; }
+  @keyframes flicker { 0% { transform: scale(1) rotate(-3deg); } 100% { transform: scale(1.1) rotate(3deg); } }
+  .candle .stick { width: 14px; height: 40px; border-radius: 4px; margin-top: 2px; }
+  .candle .num { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .blow-hint { font-size: 0.9rem; color: #c9a0dc; margin-bottom: 16px; font-style: italic; }
+
+  /* FINAL */
+  .confetti-burst { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+  .final-card {
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(255,110,180,0.3);
+    border-radius: 28px;
+    padding: 44px 36px;
+    max-width: 580px; width: 100%;
+    backdrop-filter: blur(12px);
+    animation: floatCard 3s ease-in-out infinite;
+    overflow-y: auto; max-height: 90vh;
+  }
+  @keyframes floatCard { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  .final-title { font-family: 'Dancing Script', cursive; font-size: clamp(2.4rem, 8vw, 4.5rem); color: #ff6eb4; text-shadow: 0 0 40px #ff6eb4; margin-bottom: 8px; animation: glowPulse 1.8s ease-in-out infinite; }
+  .final-age { font-family: 'Dancing Script', cursive; font-size: clamp(1.2rem, 4vw, 2rem); color: #f5a623; margin-bottom: 20px; }
+  .final-msg { font-size: clamp(0.88rem, 2.2vw, 1rem); color: #e0c8f0; line-height: 1.9; font-weight: 300; margin-bottom: 28px; }
+  .signature { font-family: 'Dancing Script', cursive; font-size: clamp(1.3rem, 4vw, 2rem); color: #ff6eb4; margin-top: 10px; }
+
+  .fade-in { animation: screenFade 0.7s ease; }
+  @keyframes screenFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+<div class="progress-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+
+<!-- SCREEN 1 – INTRO -->
+<div class="screen active fade-in" id="screen1">
+  <span class="heart-big">💝</span>
+  <div class="title-main">Nešto Malo<br>Samo za Tebe…</div>
+  <p class="subtitle">Prije nego što tapneš bilo šta — znaj da je ovo napravljeno sa svom ljubavlju koju tvoj muž ima za tebe. ❤️</p>
+  <button class="btn" onclick="goTo(2)">Kreni na putovanje ✨</button>
+</div>
+
+<!-- SCREEN 2 – KVIZ -->
+<div class="screen" id="screen2">
+  <div class="quiz-box fade-in">
+    <div class="question-counter" id="qCounter">PITANJE 1 / 5</div>
+    <div class="card-title" style="font-size:1.6rem;margin-bottom:18px;">Koliko Dobro Poznaješ Sebe? 🤔</div>
+    <div class="question-text" id="qText"></div>
+    <div class="answers-grid" id="answersGrid"></div>
+    <div class="feedback-text" id="feedbackText"></div>
+  </div>
+</div>
+
+<!-- SCREEN 3 – MEMORIJA -->
+<div class="screen" id="screen3">
+  <div class="memory-intro fade-in">
+    <div class="card-title">Memorija Ljubavi 🧠💜</div>
+    <p class="card-text">Spoji parove — svaki par krije nešto što tebe čini tako posebnom. Pronađi ih sve!</p>
+    <div class="mem-status" id="memStatus">Pronađeni parovi: 0 / 6</div>
+    <div class="memory-grid" id="memoryGrid"></div>
+    <button class="btn btn-purple" id="memNextBtn" style="display:none" onclick="goTo(4)">Sljedeća igra 🎮</button>
+  </div>
+</div>
+
+<!-- SCREEN 4 – CATCH GAME -->
+<div class="screen" id="screen4">
+  <div class="card-title fade-in">Uhvati Srca! 💘</div>
+  <p class="card-text fade-in">Srca padaju — klikni/tapni ih što više! Izbjegavaj 💩 smrdljive stvari (to je stres i problemi koje ne trebaš)! Imaš 20 sekundi!</p>
+  <div class="catch-score" id="catchScore">Srca: 0 ❤️</div>
+  <div class="catch-timer" id="catchTimer">Preostalo: 20s</div>
+  <canvas id="catchCanvas" width="420" height="320"></canvas>
+  <button class="btn btn-green" id="catchNextBtn" style="display:none;margin-top:16px;" onclick="goTo(5)">Otvori pisma 💌</button>
+</div>
+
+<!-- SCREEN 5 – LJUBAVNA PISMA -->
+<div class="screen" id="screen5">
+  <div class="card-title fade-in">6 Ljubavnih Pisama 💌</div>
+  <p class="card-text fade-in">Tapni svaku kovertu da pročitaš tajnu poruku od svog muža.</p>
+  <div class="letters-row" id="lettersRow"></div>
+  <div class="letter-content" id="letterContent">
+    <h3 id="letterTitle"></h3>
+    <p id="letterBody"></p>
+  </div>
+  <button class="btn btn-gold" id="lettersNextBtn" style="display:none" onclick="goTo(6)">Skoro smo… 🎂</button>
+</div>
+
+<!-- SCREEN 6 – SVJEĆICE -->
+<div class="screen" id="screen6">
+  <div class="card-title fade-in">Zaželi Želju! 🕯️</div>
+  <p class="card-text fade-in">Tapni svaku svjećicu da je ugasiš — a onda zaželi svoju rodendansku želju!</p>
+  <p class="blow-hint" id="blowHint">32 svjećice… ima tu dosta svjetlosti. 😄 Tapni da ih ugasiš!</p>
+  <div class="candles-row" id="candlesRow"></div>
+  <span class="cake-emoji" id="cakeEmoji">🎂</span>
+  <button class="btn" id="candleNextBtn" style="display:none;margin-top:20px;" onclick="goTo(7)">Pogledaj svoju rodendansku poruku 🎉</button>
+</div>
+
+<!-- SCREEN 7 – FINALNA PORUKA -->
+<div class="screen" id="screen7">
+  <canvas class="confetti-burst" id="confettiCanvas"></canvas>
+  <div class="final-card fade-in">
+    <div class="final-title">Sretan Rođendan,<br>Ljubavi Moja! 🎉</div>
+    <div class="final-age">Imaš 32 godine i ljepša si nego ikad ✨</div>
+    <p class="final-msg">
+      Ti si najjača žena koju poznajem.<br>
+      Boriš se svaki dan — za naše dječake, za našu porodicu, za <em>nas</em>.<br><br>
+      Trčiš od doktora do doktora, pokušavaš sve što je moguće,<br>
+      jer predati se jednostavno nije dio tvojeg rječnika.<br><br>
+      Tjeraš me da rastem. Čuvaš našu ljubav živom.<br>
+      Odgajaš dvojicu dječaka koji će jednog dana biti dobri, brižni muškarci —<br>
+      jer imaju <strong>tebe</strong> za majku.<br><br>
+      Na tvojim najtežim danima, i dalje sijaš.<br>
+      Padneš, i ustaješ — svaki put, jača i ljepša.<br><br>
+      Nevjerojatno sam sretan što sam tvoj muž.<br>
+      Hvala ti za sve što radiš, za sve što jesi,<br>
+      i za sve što me motiviraš da postanem. 💖
+    </p>
+    <div class="signature">Zauvijek tvoj — tvoj muž 🌹</div>
+  </div>
+</div>
+
+<script>
+/* PARTICLES */
+(function() {
+  const container = document.getElementById('particles');
+  const emojis = ['❤️','💕','✨','🌸','⭐','💫','🌟','💖'];
+  for (let i = 0; i < 22; i++) {
+    const el = document.createElement('div');
+    el.classList.add('particle');
+    const size = Math.random() * 18 + 10;
+    el.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*10}s;background:transparent;font-size:${size}px;border-radius:0;`;
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    container.appendChild(el);
+  }
+})();
+
+/* NAVIGATION */
+const TOTAL = 7;
+function goTo(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const t = document.getElementById('screen'+n);
+  t.classList.add('active');
+  t.classList.remove('fade-in'); void t.offsetWidth; t.classList.add('fade-in');
+  document.getElementById('progressBar').style.width = ((n-1)/(TOTAL-1)*100)+'%';
+  if (n===2) initQuiz();
+  if (n===3) initMemory();
+  if (n===4) initCatch();
+  if (n===5) initLetters();
+  if (n===6) initCandles();
+  if (n===7) initFinal();
+}
+
+/* ── KVIZ ── */
+const questions = [
+  {
+    q: 'Svako jutro spremaš dječacima doručak. Šta se desi ako im daš nešto što nije zdravo?',
+    answers: ['Veselo jedu i hvale te 😇', 'Odmah pitaju: "Je li ovo zdravo, mama?"', 'Bacaju hranu po zidu 🎨', 'Kažu da je fino i traže još'],
+    correct: 1,
+    feedback: 'Naravno! Jer si ih naučila da cijene zdravu hranu. Odlična mama! 🥦👑'
+  },
+  {
+    q: 'Dječaci se opet potukli i razbili nešto u kući. Šta radiš?',
+    answers: ['Duboko udahneš i ostaneš mirna 🧘', 'Brojiš do 10… pa do 100… pa odustaješ', 'Plačeš zajedno s njima 😂', 'Praviš se da nisi vidjela ništa'],
+    correct: 0,
+    feedback: 'Strpljenje koje imaš je čudo prirode. Iskreno, kako to radiš?! 🏆'
+  },
+  {
+    q: 'Kada naš najmlađi ima loš dan sa kožom, ti…',
+    answers: ['Istražuješ do ponoći tražeći rješenje 🔍', 'Zoveš svakog doktora kojeg znaš', 'Probaš svaki prirodni lijek na planeti', 'Sve od gore navedenog — i ne odustaješ nikad'],
+    correct: 3,
+    feedback: 'Tvoja ljubav prema njemu nema granica. On ima najborbeniju mamu na svijetu. 💙'
+  },
+  {
+    q: 'Kako nam svima daješ toliko ljubavi svaki dan?',
+    answers: ['Imam tajnu rezervu ljubavi u srcu ❤️', 'Volim vas toliko da se ne može potrošiti', 'Spavam samo 3 sata da stignem više voljeti 😴', 'Nisam sigurna, ali nikad ne stajem'],
+    correct: 1,
+    feedback: 'Tačno. Tvoja ljubav je beskrajna i svi je osjećamo svaki dan. 💖'
+  },
+  {
+    q: 'Koji je tvoj tajni superpower kao mame i supruge?',
+    answers: ['Oči na leđima 👀', 'Šesta čula za nevolju', 'Beskrajno strpljenje + beskrajna ljubav', 'Sve od navedenog — i još više!'],
+    correct: 3,
+    feedback: 'Sve i još više! Nisi mama, ti si superheroj u maskirnom odijelu. 🦸‍♀️'
+  }
+];
+
+let currentQ = 0;
+function initQuiz() { currentQ = 0; renderQuestion(); }
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('qCounter').textContent = `PITANJE ${currentQ+1} / ${questions.length}`;
+  document.getElementById('qText').textContent = q.q;
+  document.getElementById('feedbackText').textContent = '';
+  const grid = document.getElementById('answersGrid');
+  grid.innerHTML = '';
+  q.answers.forEach((a, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'ans-btn';
+    btn.textContent = a;
+    btn.onclick = () => selectAnswer(i);
+    grid.appendChild(btn);
+  });
+}
+
+function selectAnswer(idx) {
+  const q = questions[currentQ];
+  const btns = document.querySelectorAll('.ans-btn');
+  btns.forEach(b => b.disabled = true);
+  btns[idx].classList.add(idx === q.correct ? 'correct' : 'wrong');
+  if (idx !== q.correct) btns[q.correct].classList.add('correct');
+  document.getElementById('feedbackText').textContent = q.feedback;
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ < questions.length) renderQuestion();
+    else showQuizEnd();
+  }, 1900);
+}
+
+function showQuizEnd() {
+  document.querySelector('.quiz-box').innerHTML = `
+    <div class="card-title" style="font-size:2rem;">Bravo, znala si! 🌟</div>
+    <p class="card-text">Ali mi koji te volimo znamo to još bolje.<br>Hajde da vidimo koliko je dobra tvoja memorija! 😄</p>
+    <button class="btn btn-purple" onclick="goTo(3)">Sljedeći izazov →</button>
+  `;
+}
+
+/* ── MEMORIJA ── */
+const memPairs = [
+  { emoji: '💪', label: 'Snaga' },
+  { emoji: '💖', label: 'Ljubav' },
+  { emoji: '🌸', label: 'Ljepota' },
+  { emoji: '🛡️', label: 'Zaštitnica' },
+  { emoji: '⭐', label: 'Svjetlost' },
+  { emoji: '🌱', label: 'Rast' },
+];
+let memFlipped = [], memMatched = 0, memLocked = false;
+
+function initMemory() {
+  memFlipped = []; memMatched = 0; memLocked = false;
+  document.getElementById('memNextBtn').style.display = 'none';
+  document.getElementById('memStatus').textContent = 'Pronađeni parovi: 0 / 6';
+  const cards = [...memPairs, ...memPairs].map((p,i) => ({...p, id:i}));
+  for (let i = cards.length-1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [cards[i],cards[j]]=[cards[j],cards[i]]; }
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML = '';
+  const colors = ['#6b2499','#994224','#246699','#996024','#249966','#992459'];
+  cards.forEach(card => {
+    const div = document.createElement('div');
+    div.className = 'mem-card';
+    div.dataset.emoji = card.emoji;
+    const ci = memPairs.findIndex(p=>p.emoji===card.emoji);
+    div.innerHTML = `<div class="mem-inner"><div class="mem-back">?</div><div class="mem-front" style="background:linear-gradient(135deg,${colors[ci]+'99'},#1a0a2e);flex-direction:column;">${card.emoji}<span style="font-size:0.5rem;color:#e0c8f0;margin-top:2px">${card.label}</span></div></div>`;
+    div.onclick = () => flipCard(div);
+    grid.appendChild(div);
+  });
+}
+
+function flipCard(card) {
+  if (memLocked || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  card.classList.add('flipped');
+  memFlipped.push(card);
+  if (memFlipped.length === 2) {
+    memLocked = true;
+    const [a,b] = memFlipped;
+    if (a.dataset.emoji === b.dataset.emoji) {
+      a.classList.add('matched'); b.classList.add('matched');
+      memMatched++;
+      document.getElementById('memStatus').textContent = `Pronađeni parovi: ${memMatched} / 6`;
+      memFlipped = []; memLocked = false;
+      if (memMatched === 6) setTimeout(()=>{ document.getElementById('memNextBtn').style.display='inline-block'; }, 400);
+    } else {
+      setTimeout(()=>{ a.classList.remove('flipped'); b.classList.remove('flipped'); memFlipped=[]; memLocked=false; }, 1000);
+    }
+  }
+}
+
+/* ── CATCH GAME ── */
+let catchAnimId, catchTimerInt;
+
+function initCatch() {
+  document.getElementById('catchNextBtn').style.display = 'none';
+  document.getElementById('catchScore').textContent = 'Srca: 0 ❤️';
+  document.getElementById('catchTimer').textContent = 'Preostalo: 20s';
+
+  const canvas = document.getElementById('catchCanvas');
+  const ctx = canvas.getContext('2d');
+  // Resize canvas to fit
+  const maxW = Math.min(420, window.innerWidth - 48);
+  canvas.width = maxW;
+  canvas.height = Math.round(maxW * 0.76);
+
+  let score = 0;
+  let timeLeft = 20;
+  let items = [];
+  let running = true;
+
+  const W = canvas.width, H = canvas.height;
+
+  // Spawn items
+  function spawnItem() {
+    if (!running) return;
+    const isHeart = Math.random() > 0.28;
+    items.push({
+      x: Math.random() * (W - 40) + 20,
+      y: -30,
+      speed: Math.random() * 2 + 1.5,
+      emoji: isHeart ? (Math.random()>0.5?'❤️':'💕') : (Math.random()>0.5?'💩':'😤'),
+      type: isHeart ? 'heart' : 'bad',
+      size: Math.random() * 10 + 24,
+      clicked: false
+    });
+  }
+
+  const spawnInt = setInterval(spawnItem, 600);
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    items.forEach((item, i) => {
+      if (item.clicked) return;
+      item.y += item.speed;
+      ctx.font = `${item.size}px serif`;
+      ctx.textAlign = 'center';
+      ctx.fillText(item.emoji, item.x, item.y);
+    });
+    items = items.filter(it => it.y < H + 40 && !it.clicked);
+    if (running) catchAnimId = requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  // Timer
+  catchTimerInt = setInterval(() => {
+    timeLeft--;
+    document.getElementById('catchTimer').textContent = `Preostalo: ${timeLeft}s`;
+    if (timeLeft <= 0) {
+      running = false;
+      clearInterval(spawnInt);
+      clearInterval(catchTimerInt);
+      cancelAnimationFrame(catchAnimId);
+      ctx.clearRect(0,0,W,H);
+      // Show result
+      ctx.fillStyle = 'rgba(0,0,0,0.5)';
+      ctx.fillRect(0,0,W,H);
+      ctx.fillStyle = '#ff6eb4';
+      ctx.font = `bold ${Math.round(W/12)}px Poppins, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.fillText(`Uhvatila si ${score} srca! 💖`, W/2, H/2 - 20);
+      ctx.fillStyle = '#c9a0dc';
+      ctx.font = `${Math.round(W/18)}px Poppins, sans-serif`;
+      ctx.fillText(score >= 10 ? 'Kao što loviš naša srca svaki dan! 🥰' : 'Svako srce koje uhvatiš — naše je! ❤️', W/2, H/2 + 20);
+      setTimeout(()=>{ document.getElementById('catchNextBtn').style.display='inline-block'; }, 600);
+    }
+  }, 1000);
+
+  // Click / touch handler
+  function handleClick(e) {
+    if (!running) return;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    const scaleY = H / rect.height;
+    const cx = (e.clientX ?? e.touches[0].clientX) - rect.left;
+    const cy = (e.clientY ?? e.touches[0].clientY) - rect.top;
+    const mx = cx * scaleX;
+    const my = cy * scaleY;
+
+    for (let i = items.length-1; i >= 0; i--) {
+      const it = items[i];
+      const dist = Math.hypot(mx - it.x, my - it.y);
+      if (dist < it.size) {
+        it.clicked = true;
+        if (it.type === 'heart') {
+          score++;
+          document.getElementById('catchScore').textContent = `Srca: ${score} ❤️`;
+          // pop effect
+          ctx.font = `${it.size + 8}px serif`;
+          ctx.fillText('💥', it.x, it.y);
+        } else {
+          score = Math.max(0, score - 1);
+          document.getElementById('catchScore').textContent = `Srca: ${score} ❤️`;
+          ctx.font = `${it.size}px serif`;
+          ctx.fillText('❌', it.x, it.y);
+        }
+        break;
+      }
+    }
+  }
+
+  canvas.onclick = handleClick;
+  canvas.ontouchstart = (e) => { e.preventDefault(); handleClick(e); };
+}
+
+/* ── LJUBAVNA PISMA ── */
+const letters = [
+  { icon: '💪', label: 'Borkinja', title: 'Mojoj Borkinji',
+    body: 'Nikad ne odustaješ. Ni za naše dječake, ni za porodicu, ni na danima kada bi odustajanje bilo puno lakše. Ti si najhrabrija osoba koju poznajem — i vidim to svaki dan.' },
+  { icon: '💙', label: 'Mama Medvjed', title: 'Najboljoj Mami na Svijetu',
+    body: 'Način na koji se boriš za našeg najmlađeg — tražiš, istražuješ, probaš sve da mu pomogneš izliječiti kožu — to je ljubav toliko silna i čista da mi oduzima dah. On je nevjerojatno sretan što ima tebe.' },
+  { icon: '👨‍👩‍👦‍👦', label: 'Naša Porodica', title: 'Srcu Našeg Doma',
+    body: 'Ti si razlog zbog kojeg se naša kuća osjeća kao dom. Toplina, sigurnost, smijeh — sve dolazi od tebe. Naši dječaci će odrasti znajući šta je bezuvjetna ljubav, jer su odrastali s tobom.' },
+  { icon: '💑', label: 'Moj Partner', title: 'Mom Partneru u Životu',
+    body: 'Ti nas držiš u rastu. Tjeraš me lagano, s ljubavlju — da budem bolji muž, bolji otac, bolji čovjek. Naš brak je zdrav jer ti dovoljno mariš da se boriš za njega svaki dan. Hvala ti.' },
+  { icon: '🌱', label: 'Rast', title: 'Ženi Koja Cvjeta',
+    body: 'Imaš teških trenutaka — pravih, teških. Ali svaki put se vratiš jača, mudrija, ljepša. Gledati te kako rasteš kroz sve što ti život baci jedno je od najvećih privilegija mog života.' },
+  { icon: '🌟', label: 'Moja Zvijezda', title: 'Mojoj Najsjajnijoj Zvijezdi',
+    body: 'Ne vidiš uvijek koliko si izvanredna. Ali ja vidim. I dječaci vide. Sijaš čak i kad se osjećaš tamno. Daješ čak i kad se osjećaš prazno. Ti si — bez ikakve sumnje — najbolja osoba koju sam ikad upoznao.' }
+];
+let openedLetters = 0;
+
+function initLetters() {
+  openedLetters = 0;
+  document.getElementById('lettersNextBtn').style.display = 'none';
+  document.getElementById('letterContent').classList.remove('visible');
+  const row = document.getElementById('lettersRow');
+  row.innerHTML = '';
+  letters.forEach((l, i) => {
+    const div = document.createElement('div');
+    div.className = 'letter-env';
+    div.innerHTML = `${l.icon}<div class="env-label">${l.label}</div>`;
+    div.onclick = () => openLetter(div, i);
+    row.appendChild(div);
+  });
+}
+
+function openLetter(el, i) {
+  if (el.classList.contains('opened')) return;
+  el.classList.add('opened'); el.style.pointerEvents = 'none';
+  document.getElementById('letterTitle').textContent = letters[i].title;
+  document.getElementById('letterBody').textContent = letters[i].body;
+  const content = document.getElementById('letterContent');
+  content.classList.remove('visible'); void content.offsetWidth; content.classList.add('visible');
+  openedLetters++;
+  if (openedLetters === letters.length) setTimeout(()=>{ document.getElementById('lettersNextBtn').style.display='inline-block'; }, 400);
+}
+
+/* ── SVJEĆICE ── */
+const candleColors = ['#ff6eb4','#7b40ff','#f5a623','#40c9ff','#50dc78','#ff6eb4','#7b40ff','#f5a623','#40c9ff','#50dc78','#ff6eb4','#7b40ff','#f5a623','#40c9ff','#50dc78','#ff6eb4','#7b40ff','#f5a623','#40c9ff','#50dc78','#ff6eb4','#7b40ff','#f5a623','#40c9ff','#50dc78','#ff6eb4','#7b40ff','#f5a623','#40c9ff','#50dc78','#ff6eb4','#7b40ff'];
+let blownCount = 0;
+
+function initCandles() {
+  blownCount = 0;
+  document.getElementById('candleNextBtn').style.display = 'none';
+  document.getElementById('cakeEmoji').textContent = '🎂';
+  document.getElementById('blowHint').textContent = '32 svjećice… to je mnogo svjetlosti. 😄 Tapni da ih ugasiš!';
+  const row = document.getElementById('candlesRow');
+  row.innerHTML = '';
+  for (let i = 0; i < 32; i++) {
+    const c = document.createElement('div');
+    c.className = 'candle';
+    c.innerHTML = `<span class="flame">🔥</span><div class="stick" style="background:${candleColors[i]}"></div><div class="num">${i+1}</div>`;
+    c.onclick = () => blowCandle(c);
+    row.appendChild(c);
+  }
+}
+
+function blowCandle(c) {
+  if (c.classList.contains('blown')) return;
+  c.classList.add('blown'); blownCount++;
+  if (blownCount === 32) {
+    document.getElementById('blowHint').textContent = '🎉 Sve svjećice ugašene! Vrijema za želju…';
+    document.getElementById('cakeEmoji').textContent = '🎂✨';
+    setTimeout(()=>{ document.getElementById('candleNextBtn').style.display='inline-block'; }, 600);
+  } else if (blownCount > 24) {
+    document.getElementById('blowHint').textContent = `Samo još ${32-blownCount}! Skoro si! 💨`;
+  } else if (blownCount > 16) {
+    document.getElementById('blowHint').textContent = `Još ${32-blownCount}… nastavi! 💨`;
+  }
+}
+
+/* ── FINALNA + KONFETI ── */
+function initFinal() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const pieces = [];
+  const colors = ['#ff6eb4','#7b40ff','#f5a623','#40c9ff','#50dc78','#ff4081','#fff'];
+  for (let i = 0; i < 160; i++) {
+    pieces.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height - canvas.height, w: Math.random()*10+5, h: Math.random()*6+3, color: colors[Math.floor(Math.random()*colors.length)], speed: Math.random()*3+1.5, angle: Math.random()*360, spin: (Math.random()-0.5)*6, opacity: Math.random()*0.6+0.4 });
+  }
+  let running = true;
+  function draw() {
+    if (!running) return;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.globalAlpha=p.opacity; ctx.translate(p.x,p.y); ctx.rotate(p.angle*Math.PI/180); ctx.fillStyle=p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+      p.y+=p.speed; p.angle+=p.spin;
+      if (p.y>canvas.height+20) { p.y=-20; p.x=Math.random()*canvas.width; }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+  setTimeout(()=>{ running=false; ctx.clearRect(0,0,canvas.width,canvas.height); }, 9000);
+}
+</script>
+</body>
+</html>
